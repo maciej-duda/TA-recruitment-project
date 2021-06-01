@@ -10,18 +10,18 @@ const register = async(req,res) =>{
 //Check required fields
 
 if(!inputEmail || !inputPassword || !inputPasswordRepeat){
-    errors.push({ id: 'fields' , msg: 'Please fill all fields'})
+    errors.push('Please fill all fields')
 }
 
 //Check password match
 if(inputPassword !== inputPasswordRepeat){
-    errors.push({id: 'password_match' , msg: 'Password dont match'})
+    errors.push('Password dont match')
 }
 
  //Check if there is a user with the same email
  const a = await User.find({email: inputEmail})
  if(a.length>0){
-     errors.push({id: 'mail_in_use', msg: 'E-mail already in use'})
+     errors.push('E-mail already in use')
  }
 
     if(errors.length > 0){

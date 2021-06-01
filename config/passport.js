@@ -7,9 +7,9 @@ const User = require('../models/user')
 
 module.exports = function(passport){
     passport.use(
-        new LocalStrategy({passReqToCallback: true},(req, username, password, done)=>{
+        new LocalStrategy({passReqToCallback: true, usernameField: 'inputEmail', passwordField: 'inputPassword'},(req, email, password, done)=>{
             //Match User
-            User.findOne({username: { $regex: new RegExp(username+"$", "i")}})
+            User.findOne({email: { $regex: new RegExp(email+"$", "i")}})
                 .then(user =>{
                     if(!user){
                         return done(null, false, req.flash('error', 'Taki użytkownik nie istnieje!'))

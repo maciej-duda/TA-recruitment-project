@@ -1,3 +1,26 @@
+<!--
+  Sprawdzanie czy uzytkownik sie loguje
+-->
+<% 
+  if(locals.user){
+    %>
+    <span style="color: green"> Zalogowano</span>
+    <%
+  }
+%>
+<!--
+  Tymczasowe sprawdzanie błędów
+-->
+<% 
+  if(locals.errors){
+    locals.errors.forEach(error =>{
+      %>
+        <span style="color: red"><%=error%></span>
+      <%
+    })
+  }
+  %>
+
 <!DOCTYPE html>
 
 <html lang="en">

@@ -25,7 +25,7 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin">
+    <form class="form-signin" action="login" method="POST">
       <a href="/"
         ><img class="mb-4" src="/img/logo.jpg" alt="" width="72" height="72"
       /></a>
@@ -35,6 +35,7 @@
       <input
         type="email"
         id="inputEmail"
+        name="inputEmail"
         class="form-control"
         placeholder="Email address"
         required
@@ -43,6 +44,7 @@
       <input
         type="password"
         id="inputPassword"
+        name="inputPassword"
         class="form-control"
         placeholder="Password"
         required
