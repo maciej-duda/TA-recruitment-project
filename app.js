@@ -21,7 +21,7 @@ require("dotenv").config({ path: "./config/.env" });
 connectDB();
 
 //Passport config
-//require('./config/passport')(passport)
+require('./config/passport')(passport)
 
 //Initialize express
 var app = express();
@@ -50,8 +50,8 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
 //Passport middleware
-//app.use(passport.initialize())
-//app.use(passport.session())
+app.use(passport.initialize())
+app.use(passport.session())
 
 //Static files middleware
 app.use(express.static(path.join(__dirname, "public")));
