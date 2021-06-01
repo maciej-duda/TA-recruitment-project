@@ -7,7 +7,6 @@ const register = async(req,res) =>{
     const {inputEmail, inputPassword, inputPasswordRepeat} = req.body;
     let errors = []
 
-
 //Check required fields
 
 if(!inputEmail || !inputPassword || !inputPasswordRepeat){
@@ -19,24 +18,31 @@ if(inputPassword !== inputPasswordRepeat){
     errors.push({id: 'password_match' , msg: 'Password dont match'})
 }
 
-
-//Create user profile
-const inputUser = new User({
-        email: req.body.inputEmail,
-        password: req.biody.inputPassword
-    })
-
-if(errors.length > 0){
-    //Fail
-    console.log(errors)
-    //Render register page with error messages
-    registerUser.save().then(result =>{
+    if(errors.length > 0){
+        //Fail
+        console.log(errors)
+        //Render register page with error messages
         res.render('register', {
             errors
         })
-    })
-    .catch(err => console.log(err))
-    };
+    }else{
+    //Hash password
+    bcrypt.hash(req.body.inputPassword, 10, function(err, hash) {
+        //Create user profile
+        const registerUser = new User({
+            email: req.body.inputEmail,
+            password : hash
+        })
+        //Save user into database
+        registerUser.save().then(result =>{
+            //Render login page with sucess registration message
+            res.render('register',{
+                sucess: true
+            })
+        })
+        .catch(err => console.log(err))
+    });
+    }
     
 }
 
