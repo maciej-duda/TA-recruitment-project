@@ -18,6 +18,12 @@ if(inputPassword !== inputPasswordRepeat){
     errors.push({id: 'password_match' , msg: 'Password dont match'})
 }
 
+ //Check if there is a user with the same email
+ const a = await User.find({email: inputEmail})
+ if(a.length>0){
+     errors.push({id: 'mail_in_use', msg: 'E-mail already in use'})
+ }
+
     if(errors.length > 0){
         //Fail
         console.log(errors)
