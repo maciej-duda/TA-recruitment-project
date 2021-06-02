@@ -29,6 +29,7 @@
     "flash": "^1.1.0",
     "mongoose": "^5.12.12",
     "morgan": "^1.10.0",
+    "multer-gridfs-storage": "^4.2.0",
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "path": "^0.12.7"

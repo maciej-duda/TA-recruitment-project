@@ -1,8 +1,10 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+//const homeController = require("../controllers/home");
+const uploadController = require("../controllers/upload");
 
-var register = require('../functions/register.js')
+var register = require('../functions/register.js');
 
 //GET
 router.get("/", async function (req, res) {
@@ -29,6 +31,9 @@ router.get("/register", async function (req, res) {
   res.render("register");
 });
 
+router.get("/upload", async function (req, res){
+  res.render('upload');
+});
 //POST
 
 router.post('/register', async function(req, res) {
@@ -38,9 +43,14 @@ router.post('/register', async function(req, res) {
  router.post('/login', (req, res, next) => {
   passport.authenticate('local', {
       successRedirect: '/',
-      failureRedirect: '/',
+      failureRedirect: '/login',
       failureFlash: true
   })(req, res, next)
 })
+ 
 
-module.exports = router;
+
+  router.post("/upload", uploadController.uploadFile);
+
+
+module.exports = router
