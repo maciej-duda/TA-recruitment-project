@@ -1,6 +1,8 @@
 var express = require("express");
 var router = express.Router();
 var passport = require("passport");
+var ensure = require("connect-ensure-login");
+
 //const homeController = require("../controllers/home");
 const uploadController = require("../controllers/upload");
 
@@ -9,7 +11,6 @@ var register = require("../functions/register.js");
 //GET
 router.get("/", async function (req, res) {
   var errors = req.flash().error || [];
-  console.log(errors);
   if (req.user) {
     console.log(req.user);
     res.render("index", {
@@ -17,17 +18,18 @@ router.get("/", async function (req, res) {
       errors: errors,
     });
   } else {
-    res.render("index", {
-      errors: errors,
-    });
+    res.redirect("/login")
   }
 });
 
-router.get("/login", async function (req, res) {
-  res.render("login");
+router.get("/login", ensure.ensureLoggedOut('/'), async function (req, res) {
+  var errors = req.flash().error || [];
+  res.render("login", {
+    errors: errors,
+  });
 });
 
-router.get("/register", async function (req, res) {
+router.get("/register", ensure.ensureLoggedOut('/'), async function (req, res) {
   res.render("register");
 });
 
@@ -35,16 +37,16 @@ router.get("/upload", async function (req, res) {
   res.render("upload");
 });
 
-router.get("/profile", async function (req, res) {
+router.get("/profile", ensure.ensureLoggedIn('/login'), async function (req, res) {
   res.render("profile");
 });
 //POST
 
-router.post("/register", async function (req, res) {
+router.post("/register", ensure.ensureLoggedOut('/'), async function (req, res) {
   register(req, res);
 });
 
-router.post("/login", (req, res, next) => {
+router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",
