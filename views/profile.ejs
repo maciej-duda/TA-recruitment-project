@@ -30,7 +30,7 @@
               <a class="nav-link" href="/register">Register page</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="/profile">{username}</a>
+                <a class="nav-link active" href="/profile"><%=user.username%></a>
               </li>
           </ul>
         </nav>
@@ -41,8 +41,21 @@
         <h1 class="display-3">User profile page</h1>
         <p class="lead">
             <h2>{userAvatar}</h2>
-            <h2>Username: {userName}</h2>
-            <h2>Email: {userEmail}</h2>
+            <h2>Username: <%=user.username%></h2>
+            <h2>Email: <%=user.email%></h2>
+            <%
+              var date = user.date
+              var day = date.getUTCMonth() + 1
+              if(day<10){
+                day = "0"+day
+              }
+              var month = date.getUTCDate()
+              if(month < 10){
+                month = "0" + month
+              }
+              var year = date.getUTCFullYear();
+            %>
+            <h2>Account create date: <%=day%>/<%=month%>/<%=year%></h2>
             <h2>You may like:</h2>
             <a href="#"><h4>URL to Something</h4></a>
             <a href="#"><h4>URL to Something2</h4></a>

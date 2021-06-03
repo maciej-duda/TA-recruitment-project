@@ -30,15 +30,21 @@ router.get("/login", ensure.ensureLoggedOut('/'), async function (req, res) {
 });
 
 router.get("/register", ensure.ensureLoggedOut('/'), async function (req, res) {
-  res.render("register");
+  res.render("register", {
+    user: req.user
+  });
 });
 
-router.get("/upload", async function (req, res) {
-  res.render("upload");
+router.get("/upload", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  res.render("upload", {
+    user: req.user
+  });
 });
 
 router.get("/profile", ensure.ensureLoggedIn('/login'), async function (req, res) {
-  res.render("profile");
+  res.render("profile", {
+    user: req.user
+  });
 });
 //POST
 
