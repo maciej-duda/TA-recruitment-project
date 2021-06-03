@@ -1,9 +1,10 @@
 const util = require("util");
 const multer = require("multer");
+require("dotenv").config({ path: "./config/.env" });
 const GridFsStorage = require("multer-gridfs-storage");
 
 var storage = new GridFsStorage({
-  url: "mongodb+srv://Mephiste:1qaz@WSX@cluster0.fqjom.mongodb.net/TA-recruitment-project?retryWrites=true&w=majority",
+url: process.env.MONGO_URI,
   options: { useNewUrlParser: true, useUnifiedTopology: true },
   file: (req, file) => {
     const match = ["image/png", "image/jpeg"];
