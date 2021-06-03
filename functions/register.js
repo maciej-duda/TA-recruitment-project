@@ -4,12 +4,12 @@ const User = require('../models/user')
 
 
 const register = async(req,res) =>{
-    const {inputEmail, inputPassword, inputPasswordRepeat} = req.body;
+    const {inputUsername, inputEmail, inputPassword, inputPasswordRepeat} = req.body;
     let errors = []
 
 //Check required fields
 
-if(!inputEmail || !inputPassword || !inputPasswordRepeat){
+if(!inputUsername || !inputEmail || !inputPassword || !inputPasswordRepeat){
     errors.push('Please fill all fields')
 }
 
@@ -18,9 +18,15 @@ if(inputPassword !== inputPasswordRepeat){
     errors.push('Password dont match')
 }
 
- //Check if there is a user with the same email
- const a = await User.find({email: inputEmail})
+ //Check if there is a user with the same username
+ const a = await User.find({username: inputUsername})
  if(a.length>0){
+     errors.push('Username already in use')
+ }
+
+ //Check if there is a user with the same email
+ const b = await User.find({email: inputEmail})
+ if(b.length>0){
      errors.push('E-mail already in use')
  }
 
@@ -36,8 +42,9 @@ if(inputPassword !== inputPasswordRepeat){
     bcrypt.hash(req.body.inputPassword, 10, function(err, hash) {
         //Create user profile
         const registerUser = new User({
+            username: req.body.inputUsername,
             email: req.body.inputEmail,
-            password : hash
+            password : hash,
         })
         //Save user into database
         registerUser.save().then(result =>{
