@@ -1,16 +1,3 @@
-<!--
-  Sprawdzanie czy uzytkownik sie loguje
--->
-<% if(locals.user){ %>
-<span style="color: green"> Zalogowano</span>
-<% } %>
-<!--
-  Tymczasowe sprawdzanie błędów
--->
-<% if(locals.errors){ locals.errors.forEach(error =>{ %>
-<span style="color: red"><%=error%></span>
-<% }) } %>
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -24,16 +11,17 @@
     />
     <meta name="author" content="OTG Crew" />
     <link href="/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/main.css" />
+    <link rel="stylesheet" href="/public/css/main.css" />
   </head>
 
   <body class="text-center">
+
     <div class="container">
       <div class="header clearfix">
         <nav>
           <ul class="nav nav-pills float-right">
             <li class="nav-item">
-              <a class="nav-link active" href="/">Homepage</a>
+              <a class="nav-link" href="/">Homepage</a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/login">Login page</a>
@@ -42,19 +30,29 @@
               <a class="nav-link" href="/register">Register page</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/profile">User profile</a>
-            </li>
+                <a class="nav-link active" href="/profile">{username}</a>
+              </li>
           </ul>
         </nav>
         <h3 class="text-muted">TestArmy Recruitment Project</h3>
       </div>
-      <h1>Hello World!</h1>
 
-      <p><a href="login">Formularz logowania!</a></p>
-      <br /><br />
-      <p><a href="register">Formularz rejestracji</a></p>
-      <p><a href="upload">Formularz </a></p>
-      <p><a href="profile">User profile</a></p>
+      <div class="jumbotron">
+        <h1 class="display-3">User profile page</h1>
+        <p class="lead">
+            <h2>{userAvatar}</h2>
+            <h2>Username: {userName}</h2>
+            <h2>Email: {userEmail}</h2>
+            <h2>You may like:</h2>
+            <a href="#"><h4>URL to Something</h4></a>
+            <a href="#"><h4>URL to Something2</h4></a>
+        </p>
+
+        <h3>You can change your avatar by uploading file here:</h3>
+      </div>
+      <footer class="footer">
+        <p>© OTG Crew 2021</p>
+      </footer>
+
     </div>
-  </body>
 </html>

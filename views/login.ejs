@@ -25,39 +25,60 @@
   </head>
 
   <body class="text-center">
-    <form class="form-signin" action="login" method="POST">
-      <a href="/"
-        ><img class="mb-4" src="/img/logo.jpg" alt="" width="72" height="72"
-      /></a>
-      <br /><a href="/">Back to home</a>
-      <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-
-      <input
-        type="email"
-        id="inputEmail"
-        name="inputEmail"
-        class="form-control"
-        placeholder="Email address"
-        required
-        autofocus
-      />
-      <input
-        type="password"
-        id="inputPassword"
-        name="inputPassword"
-        class="form-control"
-        placeholder="Password"
-        required
-      />
-      <div class="checkbox mb-3">
-        <label>
-          <input type="checkbox" value="remember-me" /> Remember me
-        </label>
+    <div class="container">
+      <div class="header clearfix">
+        <nav>
+          <ul class="nav nav-pills float-right">
+            <li class="nav-item">
+              <a class="nav-link" href="/">Homepage</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="/login">Login page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/register">Register page</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile">User profile</a>
+            </li>
+          </ul>
+        </nav>
+        <h3 class="text-muted">TestArmy Recruitment Project</h3>
       </div>
-      <button class="btn btn-lg btn-primary btn-block" type="submit">
-        Sign in
-      </button>
-      <p class="mt-5 mb-3 text-muted">&copy; OTG 2021</p>
-    </form>
+      <form class="form-signin" action="login" method="POST">
+        <a href="/"
+          ><img class="mb-4" src="/img/logo.jpg" alt="" width="72" height="72"
+        /></a>
+        <br /><a href="/">Back to home</a>
+        <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
+        <input
+          type="email"
+          id="inputEmail"
+          name="inputEmail"
+          class="form-control"
+          placeholder="Email address"
+          required
+          autofocus
+        />
+        <input
+          type="password"
+          id="inputPassword"
+          name="inputPassword"
+          class="form-control"
+          placeholder="Password"
+          required
+        />
+        <div class="checkbox mb-3">
+          <label>
+            <input type="checkbox" value="remember-me" /> Remember me
+          </label>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">
+          Sign in
+        </button>
+        <p class="mt-5 mb-3 text-muted">&copy; OTG 2021</p>
+      </form>
+    </div>
   </body>
 </html>
