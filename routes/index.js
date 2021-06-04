@@ -2,9 +2,15 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var ensure = require("connect-ensure-login");
+var fs = require('fs');
+var path = require('path');
 
 //const homeController = require("../controllers/home");
-const uploadController = require("../controllers/upload");
+//const uploadController = require("../controllers/upload");
+//const upload = require("../functions/upload")
+
+var imgModel = require('../models/image.js');
+var upload = require('../config/upload.js');
 
 var register = require("../functions/register.js");
 
@@ -60,6 +66,9 @@ router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/upload", uploadController.uploadFile);
+router.post("/upload", upload.single('file'), (req, res, next) => {
+  console.log(req.body.file)
+  res.redirect('/')
+});
 
 module.exports = router;
