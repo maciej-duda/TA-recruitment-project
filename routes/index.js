@@ -2,23 +2,16 @@ var express = require("express");
 var router = express.Router();
 var passport = require("passport");
 var ensure = require("connect-ensure-login");
-var fs = require('fs');
-var path = require('path');
 
-//const homeController = require("../controllers/home");
-//const uploadController = require("../controllers/upload");
-//const upload = require("../functions/upload")
-
-var imgModel = require('../models/image.js');
 var upload = require('../config/upload.js');
 
+var updateUserAvatar = require("../functions/updateUserAvatar.js")
 var register = require("../functions/register.js");
 
 //GET
 router.get("/", async function (req, res) {
   var errors = req.flash().error || [];
   if (req.user) {
-    console.log(req.user);
     res.render("index", {
       user: req.user,
       errors: errors,
@@ -67,7 +60,7 @@ router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
 });
 
 router.post("/upload", upload.single('file'), (req, res, next) => {
-  console.log(req.body.file)
+  updateUserAvatar(req, res, req.file.id)
   res.redirect('/')
 });
 
