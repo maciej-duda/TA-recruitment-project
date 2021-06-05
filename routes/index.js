@@ -6,7 +6,9 @@ var ensure = require("connect-ensure-login");
 var upload = require('../config/upload.js');
 
 var updateUserAvatar = require("../functions/updateUserAvatar.js")
+var fetchImage = require("../functions/fetchImage.js")
 var register = require("../functions/register.js");
+const imageData = require("../models/imageData.js");
 
 //GET
 router.get("/", async function (req, res) {
@@ -59,9 +61,16 @@ router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
   })(req, res, next);
 });
 
-router.post("/upload", upload.single('file'), (req, res, next) => {
+router.post("/upload", upload.single('file'), async (req, res, next) => {
   updateUserAvatar(req, res, req.file.id)
-  res.redirect('/')
+  fetchImage(req, res).then(imageData => {
+    var errors = req.flash().error || [];
+    res.render("index", {
+      user: req.user,
+      errors: errors,
+      image: imageData
+    });
+  });
 });
 
 module.exports = router;

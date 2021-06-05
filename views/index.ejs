@@ -11,6 +11,12 @@
 <span style="color: red"><%=error%></span>
 <% }) } %>
 
+<% if(locals.image){ 
+  var src = "data:image/jpeg;base64," + locals.image
+  %>
+  <img src ="<%=src%>" >
+<% } %>
+
 <!DOCTYPE html>
 
 <html lang="en">
