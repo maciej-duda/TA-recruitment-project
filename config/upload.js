@@ -1,25 +1,27 @@
-const multer = require('multer');
-const GridFsStorage = require('multer-gridfs-storage');
-require("dotenv").config();
+var multer = require('multer')
+var path = require('path')
 
-var storage = new GridFsStorage({
-    url: process.env.MONGO_URI, file: (req, file) => {
-        return {
-            filename: 'file_' + Date.now()
-        }
+const storage = multer.diskStorage({
+    destination: './uploads/',
+    filename: function (req, file, cb) {
+        cb(null, new Date().toISOString().replace(/:/g, '-') + file.originalname)
     }
-});
+})
 
 const fileFilter = (req, file, cb) => {
-    var filetypes = /jpeg|jpg|png/;
-    var mimetype = filetypes.test(file.mimetype);
-    if (mimetype) {
-        return cb(null, true);
+    if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png') {
+        cb(null, true)
+    } else {
+        cb(null, false)
     }
-    cb("Error:file upload only supports the following filetype-"
-        + filetypes);
 }
 
-var upload = multer({ storage: storage, fileFilter: fileFilter });
+var upload = multer({
+    storage: storage,
+    limits: {
+        fileSize: 1024 * 1024 * 5
+    },
+    fileFilter: fileFilter
+})
 
 module.exports = upload

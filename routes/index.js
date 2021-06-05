@@ -3,12 +3,10 @@ var router = express.Router();
 var passport = require("passport");
 var ensure = require("connect-ensure-login");
 
-var upload = require('../config/upload.js');
-
 var updateUserAvatar = require("../functions/updateUserAvatar.js")
-var fetchImage = require("../functions/fetchImage.js")
 var register = require("../functions/register.js");
-const imageData = require("../models/imageData.js");
+
+var upload = require('../config/upload.js')
 
 //GET
 router.get("/", async function (req, res) {
@@ -62,15 +60,8 @@ router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
 });
 
 router.post("/upload", upload.single('file'), async (req, res, next) => {
-  updateUserAvatar(req, res, req.file.id)
-  fetchImage(req, res).then(imageData => {
-    var errors = req.flash().error || [];
-    res.render("index", {
-      user: req.user,
-      errors: errors,
-      image: imageData
-    });
-  });
+  await updateUserAvatar(req, res, req.file.path)
+  res.redirect('/')
 });
 
 module.exports = router;

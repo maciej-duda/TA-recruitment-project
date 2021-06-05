@@ -40,7 +40,19 @@
       <div class="jumbotron">
         <h1 class="display-3">User profile page</h1>
         <p class="lead">
-            <h2>{userAvatar}</h2>
+            <h2>
+              <% 
+                if(user.imagePath =="0"){
+                  %>
+                    DEFAULT IMAGE (nie mam pod reka)
+                  <%
+                }else{
+                  %>
+                  <img style="width :200px; height: 200px;" src = "<%=user.imagePath%>" />
+                  <%
+                }
+              %>
+            </h2>
             <h2>Username: <%=user.username%></h2>
             <h2>Email: <%=user.email%></h2>
             <%

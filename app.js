@@ -42,6 +42,7 @@ app.use(
   })
 );
 
+
 //Flash errors middleware
 app.use(flash());
 
@@ -55,6 +56,7 @@ app.use(passport.session())
 
 //Static files middleware
 app.use(express.static(path.join(__dirname, "public")));
+app.use('/uploads', express.static('uploads'))
 
 //Routes
 var indexRouter = require("./routes/index");
