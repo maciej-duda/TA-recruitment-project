@@ -60,8 +60,12 @@ router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
 });
 
 router.post("/upload", upload.single('file'), async (req, res, next) => {
-  await updateUserAvatar(req, res, req.file.path)
-  res.redirect('/')
+  if(req.file){
+    await updateUserAvatar(req, res, req.file.path)
+    res.redirect('/profile')
+  }else{
+    res.redirect('/profile')
+  }
 });
 
 module.exports = router;
