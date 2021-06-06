@@ -6,3 +6,5 @@ To download project and run it use these commands:
 - `node app.js`
 
 To view app visit localhost:3000 in your browser.
+
+All information that you may need can be found in the "documentation" directory.
