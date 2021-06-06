@@ -45,6 +45,11 @@ router.get("/profile", ensure.ensureLoggedIn('/login'), async function (req, res
     user: req.user
   });
 });
+
+router.get("/logout", ensure.ensureLoggedIn('/login'), function (req, res) {
+  req.logout()
+  res.redirect('/login')
+})
 //POST
 
 router.post("/register", ensure.ensureLoggedOut('/'), async function (req, res) {
