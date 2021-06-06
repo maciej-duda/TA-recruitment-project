@@ -48,6 +48,36 @@ router.get("/profile", ensure.ensureLoggedIn('/login'), async function (req, res
   });
 });
 
+router.get("/about", async function (req, res) {
+  res.render("about", {
+    user: req.user
+  });
+});
+
+router.get("/contact", async function (req, res) {
+  res.render("contact", {
+    user: req.user
+  });
+});
+
+router.get("/maciej", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  res.render("maciej", {
+    user: req.user
+  });
+});
+
+router.get("/jacob", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  res.render("jacob", {
+    user: req.user
+  });
+});
+
+router.get("/adam", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  res.render("adam", {
+    user: req.user
+  });
+});
+
 router.get("/logout", ensure.ensureLoggedIn('/login'), function (req, res) {
   req.logout()
   res.redirect('/login')

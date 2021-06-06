@@ -21,25 +21,77 @@
     <link rel="stylesheet" href="css/main.css" />
   </head>
 
-  <body class="text-center">
+  <body>
     <div class="container">
       <div class="header clearfix">
-        <nav>
+        <nav class="navigation">
           <ul class="nav nav-pills float-right">
             <li class="nav-item">
               <a class="nav-link active" href="/">Homepage</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/profile">User profile</a>
+              <a class="nav-link" href="/about">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/contact">Contact Us</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/profile"><%=user.username%></a>
             </li>
             <li class="nav-item">
               <a class="nav-link" href="/logout">Logout</a>
             </li>
           </ul>
         </nav>
-        <h3 class="text-muted">TestArmy Recruitment Project</h3>
+        <div class="main-container">
+          <div class="left-panel">
+            <div class="news-tile">
+              <h1>Welcome to your recruitment task</h1>
+              <h3>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a
+                metus turpis. Aenean mollis porttitor tortor, vel venenatis
+                ligula bibendum et.
+              </h3>
+              <span class="news-footer">
+                <span class="news-author">
+                  <a class="author-link" href="/maciej">Maciej</a></span> -
+                <span class="news-date">21:37 31.13.2021</span>
+              </span>
+            </div>
+            <div class="news-tile">
+              <h1>Welcome to your recruitment task</h1>
+              <h4>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a
+                metus turpis. Aenean mollis porttitor tortor, vel venenatis
+                ligula bibendum et.
+              </h4>
+              <span class="news-footer">
+                <span class="news-author">
+                  <a class="author-link" href="/jacob">Jacob</a></span> -
+                <span class="news-date">21:37 31.13.2021</span>
+              </span>
+            </div>
+            <div class="news-tile">
+              <h1>Welcome to your recruitment task</h1>
+              <h4>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nunc a
+                metus turpis. Aenean mollis porttitor tortor, vel venenatis
+                ligula bibendum et.
+              </h4>
+              <span class="news-footer">
+                <span class="news-author">
+                  <a class="author-link" href="/adam">Adam</a></span> -
+                <span class="news-date">21:37 31.13.2021</span>
+              </span>
+              </span>
+            </div>
+          </div>
+          <div class="right-panel">hehz</div>
+          <div class="footer"><span class="footer-text">OTG Crew for TestArmy &copy; 2021</span></div>
+        </div>
+
+        <h1>Hello World!</h1>
       </div>
-      <h1>Hello World!</h1>
     </div>
   </body>
 </html>

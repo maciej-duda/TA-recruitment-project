@@ -2,10 +2,9 @@
   Tymczasowe sprawdzanie błędów
 -->
 <% if(errors){ errors.forEach(error =>{ %>
-  <span style="color: red"><%=error%></span>
-  <% }) } %>
+<span style="color: red"><%=error%></span>
+<% }) } %>
 
-  
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -32,7 +31,7 @@
     <link href="/css/main.css" rel="stylesheet" />
   </head>
 
-  <body class="text-center">
+  <body>
     <div class="container">
       <div class="header clearfix">
         <nav>
@@ -78,7 +77,7 @@
         <button class="btn btn-lg btn-primary btn-block" type="submit">
           Sign in
         </button>
-        <p class="mt-5 mb-3 text-muted">&copy; OTG 2021</p>
+        <div class="footer"><span class="footer-text">OTG Crew for TestArmy &copy; 2021</span></div>
       </form>
     </div>
   </body>
