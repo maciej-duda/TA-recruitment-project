@@ -44,11 +44,11 @@
               <% 
                 if(user.imagePath =="0"){
                   %>
-                    DEFAULT IMAGE (nie mam pod reka)
+                   <img src="/img/default-avatar.png" alt="default user avatar">
                   <%
                 }else{
                   %>
-                  <img style="width :200px; height: 200px;" src = "<%=user.imagePath%>" />
+                  <img style="width:256px; height: 256px;" src = "<%=user.imagePath%>" />
                   <%
                 }
               %>
