@@ -41,8 +41,10 @@ router.get("/upload", ensure.ensureLoggedIn('/login'), async function (req, res)
 });
 
 router.get("/profile", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  var errors = req.flash().error || [];
   res.render("profile", {
-    user: req.user
+    user: req.user,
+    errors: errors
   });
 });
 
@@ -69,6 +71,7 @@ router.post("/upload", upload.single('file'), async (req, res, next) => {
     await updateUserAvatar(req, res, req.file.path)
     res.redirect('/profile')
   }else{
+    req.flash('error', 'Wrong file type or size')
     res.redirect('/profile')
   }
 });
