@@ -12,7 +12,8 @@ const connectDB = require("./config/db");
 const logger = require("morgan");
 const passport = require("passport");
 const flash = require("connect-flash");
-const session = require("express-session");
+//const session = require("express-session");
+const cookieSession = require('cookie-session');
 
 //Load env file
 require("dotenv").config({ path: "./config/.env" });
@@ -34,14 +35,18 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
 //Session configuration
-app.use(
-  session({
-    secret: "keyboard cat",
-    resave: false,
-    saveUninitialized: false,
-  })
-);
+//app.use(
+ // session({
+  //  secret: "keyboard cat",
+   // resave: false,
+    //saveUninitialized: false,
+  //})
+//);
 
+app.use(cookieSession({
+  keys: ['dasdas21fsdffedsfds4das21321', 'safdas454325235325trgtrthdfthd', '21ed2rf3245r23r2354r235235'],
+  Maxage:  60 * 1000 // valid for 24h
+}));
 
 //Flash errors middleware
 app.use(flash());
