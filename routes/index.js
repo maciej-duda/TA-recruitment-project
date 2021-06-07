@@ -10,6 +10,7 @@ var upload = require('../config/upload.js')
 
 //GET
 router.get("/", async function (req, res) {
+  console.log(req.user.imagePath)
   var errors = req.flash().error || [];
   if (req.user) {
     res.render("index", {
