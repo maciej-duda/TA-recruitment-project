@@ -13,6 +13,7 @@ const logger = require("morgan");
 const passport = require("passport");
 const flash = require("connect-flash");
 //const session = require("express-session");
+const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
 
 //Load env file
@@ -43,10 +44,29 @@ app.use(express.urlencoded({ extended: false }));
   //})
 //);
 
+app.use(cookieParser());
+
+app.get('/index',(req, res) => {
+    //After using middleware, you can access cookies objects on req and res
+    console.log(req.cookies);
+    // write cookie
+    res.cookie('session', 10, {
+      
+        maxAge: 24 * 60 * 60 * 1000
+    })
+    res.send('ok');
+})
+
 app.use(cookieSession({
   keys: ['dasdas21fsdffedsfds4das21321', 'safdas454325235325trgtrthdfthd', '21ed2rf3245r23r2354r235235'],
-  Maxage:  60 * 1000 // valid for 24h
+  maxAge: 24 * 60 * 60 * 1000 // valid for 24h
 }));
+
+app.get('index', (req, res) => {
+    console.log(req.session);
+    res.session['num'] = 10;
+    res.send('ok');
+});
 
 //Flash errors middleware
 app.use(flash());
@@ -65,6 +85,7 @@ app.use('/uploads', express.static('uploads'))
 
 //Routes
 var indexRouter = require("./routes/index");
+const { appendFile } = require("fs");
 app.use("/", indexRouter);
 
 app.listen(process.env.PORT, function () {
