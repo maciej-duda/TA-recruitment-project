@@ -89,6 +89,11 @@ router.post("/register", ensure.ensureLoggedOut('/'), async function (req, res) 
 });
 
 router.post("/login", ensure.ensureLoggedOut('/'), (req, res, next) => {
+  if(req.body.checkbox){
+    req.sessionOptions.maxAge = 3 * 60 * 60 * 1000 // valid for 3h
+  }else{
+    req.sessionOptions.maxAge = 15 * 60 * 1000 // valid for 15min
+  }
   passport.authenticate("local", {
     successRedirect: "/",
     failureRedirect: "/login",

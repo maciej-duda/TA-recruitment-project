@@ -48,7 +48,7 @@ app.use(cookieParser());
 
 app.use(cookieSession({
   keys: ['dasdas21fsdffedsfds4das21321', 'safdas454325235325trgtrthdfthd', '21ed2rf3245r23r2354r235235'],
-  maxAge: 24 * 60 * 60 * 1000 // valid for 24h
+  maxAge: 15 * 60 * 1000 // valid for 15 min
 }));
 
 //Flash errors middleware
