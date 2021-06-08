@@ -5,6 +5,8 @@ var ensure = require("connect-ensure-login");
 
 var updateUserAvatar = require("../functions/updateUserAvatar.js")
 var register = require("../functions/register.js");
+var addComment = require("../functions/addComment.js");
+var getComments = require("../functions/getComments.js");
 
 var upload = require('../config/upload.js')
 
@@ -82,10 +84,18 @@ router.get("/adam", ensure.ensureLoggedIn('/login'), async function (req, res) {
 
 /* NEWS PAGES */
 
-router.get("/news/welcome-to-your-recruitment-task", ensure.ensureLoggedIn('/login'), async function (req, res) {
-  res.render("news/welcome-to-your-recruitment-task", {
-    user: req.user
-  });
+router.get("/news", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  if(req.query.title == "welcome-to-your-recruitment-task"){
+    var comments = await getComments(req, res, req.query.title) || []
+    console.log(comments)
+    res.render("news/welcome-to-your-recruitment-task", {
+      user: req.user,
+      comments: comments
+    });
+  }else{
+    //tymczasowo
+    res.redirect('/')
+  }
 });
 
 /* END OF NEWS PAGES */
@@ -120,6 +130,10 @@ router.post("/upload", upload.single('file'), async (req, res, next) => {
     req.flash('error', 'Wrong file type or size')
     res.redirect('/profile')
   }
+});
+
+router.post("/addComment",  async (req, res) => {
+  addComment(req, res, req.query.title, req.body.commentBody)
 });
 
 module.exports = router;
