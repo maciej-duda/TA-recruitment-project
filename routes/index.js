@@ -59,7 +59,7 @@ router.get("/contact", async function (req, res) {
     user: req.user
   });
 });
-
+/* AUTHOR PAGES */
 router.get("/maciej", ensure.ensureLoggedIn('/login'), async function (req, res) {
   res.render("maciej", {
     user: req.user
@@ -78,6 +78,17 @@ router.get("/adam", ensure.ensureLoggedIn('/login'), async function (req, res) {
   });
 });
 
+/* END OF AUTHOR PAGES */
+
+/* NEWS PAGES */
+
+router.get("/news/welcome-to-your-recruitment-task", ensure.ensureLoggedIn('/login'), async function (req, res) {
+  res.render("news/welcome-to-your-recruitment-task", {
+    user: req.user
+  });
+});
+
+/* END OF NEWS PAGES */
 router.get("/logout", ensure.ensureLoggedIn('/login'), function (req, res) {
   req.logout()
   res.redirect('/login')

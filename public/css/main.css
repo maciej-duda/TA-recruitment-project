@@ -58,6 +58,10 @@ body {
   font-style: italic;
 }
 
+.news-tile .news-link {
+  color: #fff;
+}
+
 .news-tile .news-author {
   font-weight: bold;
 }
@@ -72,6 +76,44 @@ body {
 
 .news-tile .news-date {
   font-style: italic;
+}
+
+/* Comment styles */
+
+.comment-box-first {
+  float: left;
+  color: #fff;
+  height: auto;
+  width: 700px;
+  border: 1px solid white;
+  margin-left: 10px;
+  margin-top: 225px;
+  padding: 5px 10px;
+}
+.comment-box-next {
+  float: left;
+  color: #fff;
+  height: auto;
+  width: 700px;
+  border: 1px solid white;
+  margin-top: 10px;
+  margin-left: 10px;
+  padding: 5px 10px;
+}
+
+.add-comment-box {
+  width: 700px;
+  float: left;
+  margin-left: 10px;
+  margin-top: 25px;
+}
+
+.add-comment-box h4 {
+  color: #fff;
+}
+
+.comment-author {
+  align-items: right;
 }
 
 .footer {
