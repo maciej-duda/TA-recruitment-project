@@ -87,7 +87,6 @@ router.get("/adam", ensure.ensureLoggedIn('/login'), async function (req, res) {
 router.get("/news", ensure.ensureLoggedIn('/login'), async function (req, res) {
   if(req.query.title == "welcome-to-your-recruitment-task"){
     var comments = await getComments(req, res, req.query.title) || []
-    console.log(comments)
     res.render("news/welcome-to-your-recruitment-task", {
       user: req.user,
       comments: comments

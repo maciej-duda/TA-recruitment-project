@@ -10,7 +10,7 @@ const addComment = async (req, res, title, commentBody) => {
             content: commentBody
         })
         comment.save().then(result=>{
-            var url = "/news/"+title
+            var url = "/news?title="+title
             res.redirect(url)
         })
         .catch(err=> console.log(err))
