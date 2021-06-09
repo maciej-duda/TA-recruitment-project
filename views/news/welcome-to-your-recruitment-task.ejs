@@ -52,7 +52,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a aliquam purus. Int
                 <div class="comment-box-first">
                     <span class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec leo dictum, porttitor augue non, varius magna. Donec consectetur volutpat facilisis. 
                     <span class="comment-footer"><br><br>
-                        <span class="comment-date">Added on: 08.06.2021 19:20</span><br>
+                        <span class="comment-date">Added on: 08.06.2021 19:20:00</span><br>
                         <span class="comment-author">Sarael</span>
                     </span>
                 </span>
@@ -60,7 +60,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a aliquam purus. Int
                 <div class="comment-box-next">
                   <span class="comment-content">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi nec leo dictum, porttitor augue non, varius magna. Donec consectetur volutpat facilisis. 
                     <span class="comment-footer"><br><br>
-                        <span class="comment-date">Added on: 08.06.2021 19:20</span><br>
+                        <span class="comment-date">Added on: 08.06.2021 19:21:33</span><br>
                         <span class="comment-author">Sarael</span>
                     </span>
                   </span>
@@ -68,11 +68,22 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut a aliquam purus. Int
                 <%
                 if(comments){
                   comments.forEach(comment =>{
+                    var second = comment.date.getSeconds();
+                    var minute = comment.date.getMinutes();
+                    var hour = comment.date.getHours();
+                    var day = comment.date.getUTCDate();
+                    var month = comment.date.getUTCMonth() + 1;
+                    var year = comment.date.getUTCFullYear();
+                    if(second<10) second = "0" + second;
+                    if(minute<10) minute = "0" + minute;
+                    if(hour<10) hour = "0" + hour;
+                    if(day<10) day = "0" + day;
+                    if(month<10) month = "0" + month;
                 %>
                 <div class="comment-box-next">
                   <span class="comment-content"><%=comment.content%>
                     <span class="comment-footer"><br><br>
-                        <span class="comment-date">Added on: <%=comment.date %></span><br>
+                        <span class="comment-date">Added on: <%=day%>.<%=month%>.<%=year%> <%=hour%>:<%=minute%>:<%=second%></span><br>
                         <span class="comment-author"><%=user.username%></span>
                     </span>
                   </span>
